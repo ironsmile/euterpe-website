@@ -1,0 +1,5 @@
+baseURL = "https://listen-to-euterpe.eu/"
+languageCode = "en-us"
+title = "Euterpe Music Server"
+theme = "syna"
+enableGitInfo = true
