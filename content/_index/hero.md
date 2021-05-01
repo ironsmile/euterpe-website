@@ -22,7 +22,7 @@ subtitle = "Own your streaming music, do not lease it!"
   color = "info" # primary, secondary, success, danger, warning, info, light, dark, link - default: primary
 
 [[buttons]]
-  text = "GitHub"
+  text = "Source Code"
   url = "https://github.com/ironsmile/httpms"
   color = "primary"
 

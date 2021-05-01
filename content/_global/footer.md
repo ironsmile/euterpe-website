@@ -2,16 +2,16 @@
 fragment = "footer"
 #disabled = true
 date = "2021-05-01"
-weight = 1200
+weight = 2000
 background = "secondary"
 
 menu_title = "Related Resources"
 
 [asset]
-  title = "Logo Title"
+  title = "Euterpe Logo"
   image = "logo.svg"
-  text = "Logo Subtext"
-  url = "#"
+  text = "Heavy metal hand horns sign"
+  url = "/"
 +++
 
 #### Euterpe

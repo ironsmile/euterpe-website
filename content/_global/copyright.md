@@ -2,7 +2,7 @@
 fragment = "copyright"
 #disabled = true
 date = "2021-05-01"
-weight = 1250
+weight = 3000
 background = "dark"
 
 copyright = "Copyright 2021 Doychin Atanasov" # default: Copyright $Year .Site.params.name

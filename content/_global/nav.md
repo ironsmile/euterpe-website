@@ -4,6 +4,7 @@ fragment = "nav"
 date = "2021-05-01"
 weight = 0
 background = "dark"
+search = true
 
 [repo_button]
   url = "https://github.com/ironsmile/httpms"
