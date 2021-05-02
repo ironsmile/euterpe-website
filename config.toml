@@ -25,7 +25,7 @@ enableGitInfo = true
   weight = 40
 
 [[menu.main]]
-  url = "#docs"
+  url = "/docs"
   name = "Docs"
   weight = 50
 

@@ -14,6 +14,6 @@ background = "light"
 
 [[buttons]]
   text = "Getting Started"
-  url = "#"
+  url = "/docs/#getting-started"
   color = "info"
 +++
