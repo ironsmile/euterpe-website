@@ -9,6 +9,6 @@ weight = 30
 +++
 
 Support artists by buying their music directly. Spend your
-money in by buying from the _people_ actually creating. Instead of
+money on the _people_ actually creating. Instead of
 paying to tech giants with unknown deals and questionable
 business practices.

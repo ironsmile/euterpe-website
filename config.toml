@@ -1,6 +1,6 @@
 baseURL = "https://listen-to-euterpe.eu/"
 languageCode = "en-us"
-title = "Euterpe Music Server"
+title = "Euterpe Music"
 theme = "syna"
 enableGitInfo = true
 
@@ -15,7 +15,7 @@ enableGitInfo = true
   weight = 20
 
 [[menu.main]]
-  url = "#clients"
+  url = "/clients"
   name = "Clients"
   weight = 30
 
@@ -50,7 +50,7 @@ enableGitInfo = true
   weight = 10
 
 [[menu.copyright_footer]]
-  url = "#clients"
+  url = "/clients"
   name = "Clients"
   weight = 30
 

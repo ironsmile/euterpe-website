@@ -28,6 +28,6 @@ subtitle = "Own your streaming music, do not lease it!"
 
 [[buttons]]
   text = "Download"
-  url = "https://github.com/ironsmile/httpms/releases/tag/v1.4.0"
+  url = "https://github.com/ironsmile/httpms/releases/latest"
   color = "success"
 +++

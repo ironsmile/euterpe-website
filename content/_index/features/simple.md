@@ -4,7 +4,7 @@ weight = 10
 #disabled = true
 
 [asset]
-  icon = "fas fa-bolt"
+  icon = "fab fa-simplybuilt"
   # url = "#"
 +++
 
