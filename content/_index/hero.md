@@ -18,7 +18,7 @@ subtitle = "Own your streaming music, do not lease it!"
 
 [[buttons]]
   text = "Getting Started"
-  url = "/docs/#getting-started"
+  url = "/docs/getting-started"
   color = "info" # primary, secondary, success, danger, warning, info, light, dark, link - default: primary
 
 [[buttons]]
