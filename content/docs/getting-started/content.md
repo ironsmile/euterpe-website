@@ -36,7 +36,7 @@ docker run -v "%userprofile%/Music/:/root/Music" -p 8080:9996 -d ironsmile/httpm
 
 Then point your browser to [http://localhost:8080](http://localhost:8080) and you will see the Euterpe web UI. The -v flag in the Docker command will mount your `Music` directory to be discoverable by Euterpe.
 
-Note that the method above will build you an image which using the latest version on the `master` branch. Which might be unstable at times. You might want to choose a particular release tag instead.
+Note that the method above will build you an image which uses the latest version on the `master` branch. Which might be unstable at times. You might want to choose a particular release tag instead.
 
 For more details how to run effectively run Euterpe in a Docker container see the [Docker section of the documentation](/docs/docker).
 
