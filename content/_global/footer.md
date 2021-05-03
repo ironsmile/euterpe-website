@@ -6,12 +6,6 @@ weight = 2000
 background = "secondary"
 
 menu_title = "Related Resources"
-
-[asset]
-  title = "Euterpe Logo"
-  image = "logo.svg"
-  text = "Heavy metal hand horns sign"
-  url = "/"
 +++
 
 #### Euterpe
