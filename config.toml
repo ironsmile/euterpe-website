@@ -20,7 +20,7 @@ enableGitInfo = true
   weight = 30
 
 [[menu.main]]
-  url = "#blog"
+  url = "/blog"
   name = "Blog"
   weight = 40
 
