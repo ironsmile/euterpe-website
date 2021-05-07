@@ -30,7 +30,7 @@ enableGitInfo = true
   weight = 50
 
 [[menu.footer]]
-  url = "https://github.com/ironsmile/httpms-rhythmbox"
+  url = "https://github.com/ironsmile/euterpe-rhythmbox"
   name = "Euterpe for Rhythmbox"
   weight = 10
 

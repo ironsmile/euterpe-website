@@ -12,7 +12,7 @@ lives_in = "[Sofia, Bulgaria](https://www.openstreetmap.org/#map=12/42.7034/23.2
 scope = [
   "Author of [Euterpe](https://listen-to-euterpe.eu)",
   "Creator of the [Euterpe-Mobile](https://github.com/ironsmile/httpms-mobile)",
-  "Lead dev and sole user of [Euterpe for Rhythmbox](https://github.com/ironsmile/httpms-rhythmbox)",
+  "Lead dev and sole user of [Euterpe for Rhythmbox](https://github.com/ironsmile/euterpe-rhythmbox)",
   "Designer of [listen-to-euterpe.eu](https://listen-to-euterpe.eu)",
   "Architect of the Euterpe API",
   "Writer of all of the typos you've read so far",
