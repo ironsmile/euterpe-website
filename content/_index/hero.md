@@ -7,7 +7,7 @@ background = "dark" # can influence the text color
 particles = false
 
 title = "Euterpe"
-subtitle = "Own your streaming music, do not lease it!"
+subtitle = "Own your music, do not rent it!"
 
 [header]
   image = "mink-mingle-HRyjETL87Gg-unsplash.jpg"
