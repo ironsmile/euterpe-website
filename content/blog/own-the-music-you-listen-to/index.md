@@ -5,6 +5,10 @@ draft: false
 fragment: "content"
 weight: 100
 display_date: true
+sidebar:
+  align: "right"
+categories:
+  - "Blog"
 ---
 
 In the last decade people (in the western countries at least) are moving away from buying their music on physical medium. Instead they tend to subscribe to a streaming service such Spotify, Google Play Music (R.I.P.) and iTunes. Streaming is certainly more convenient. You don't have to lug around real-world objects in order to listen to your music, you don't have to decide which part of the music collection to actually cary with you and most importantly, you don't have to change the vinyl, tape or CD every 40 minutes or so.
