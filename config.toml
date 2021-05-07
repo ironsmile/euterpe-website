@@ -36,13 +36,18 @@ enableGitInfo = true
 
 [[menu.footer]]
   url = "https://github.com/ironsmile/httpms-mobile"
-  name = "Mobile Apps"
-  weight = 30
+  name = "Euterpe Mobile Apps"
+  weight = 20
 
 [[menu.footer]]
   url = "https://doycho.com"
   name = "Doycho's Personal Corner"
   weight = 30
+
+[[menu.footer]]
+  url = "https://github.com/ironsmile/euterpe-website"
+  name = "This website's source"
+  weight = 40
 
 [[menu.copyright_footer]]
   url = "/about"
@@ -56,6 +61,6 @@ enableGitInfo = true
 
 [[menu.footer_social]]
   weight = 20
-  name = "github"
+  name = "Euterpe GitHub repository"
   pre = "fab fa-github"
   url = "https://github.com/ironsmile/httpms"
