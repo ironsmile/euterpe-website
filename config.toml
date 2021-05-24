@@ -35,7 +35,7 @@ enableGitInfo = true
   weight = 10
 
 [[menu.footer]]
-  url = "https://github.com/ironsmile/httpms-mobile"
+  url = "https://github.com/ironsmile/euterpe-mobile"
   name = "Euterpe Mobile Apps"
   weight = 20
 

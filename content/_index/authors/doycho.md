@@ -11,7 +11,7 @@ position = "The Lone Developer"
 lives_in = "[Sofia, Bulgaria](https://www.openstreetmap.org/#map=12/42.7034/23.2708)"
 scope = [
   "Author of [Euterpe](https://listen-to-euterpe.eu)",
-  "Creator of the [Euterpe-Mobile](https://github.com/ironsmile/httpms-mobile)",
+  "Creator of the [Euterpe-Mobile](https://github.com/ironsmile/euterpe-mobile)",
   "Lead dev and sole user of [Euterpe for Rhythmbox](https://github.com/ironsmile/euterpe-rhythmbox)",
   "Designer of [listen-to-euterpe.eu](https://listen-to-euterpe.eu)",
   "Architect of the Euterpe API",
