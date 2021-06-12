@@ -8,7 +8,7 @@ title = "Configuration"
   sticky = true
 +++
 
-The configuration is stored in a JSON file. Every user on the system has their own configuration file. For a Unixy OS it is located in ```$HOME/.httpms/config.json```. For Windows users it is in ```%APPDATA%\httpms\config.json```. The configuration file will be created for you on the first run. The default configuration options can be found in [here](https://github.com/ironsmile/httpms/blob/master/src/config/config.go).
+The configuration is stored in a JSON file. Every user on the system has their own configuration file. For a Unixy OS it is located in ```$HOME/.euterpe/config.json```. For Windows users it is in ```%APPDATA%\euterpe\config.json```. The configuration file will be created for you on the first run. The default configuration options can be found in [here](https://github.com/ironsmile/euterpe/blob/master/src/config/config.go).
 
 ### Example File
 
@@ -104,13 +104,15 @@ The JSON can store the following list of directives. Everything else is ignored.
   * **user** (_string_) - authentication username
   * **password** (_string_) - authentication password
 
-* **download_artwork** (_boolean_) - When true, HTTPMS will search Cover Art Archive for album artworks when none is found locally. Anything found will be saved in the HTTPMS database and later used instead of further calls to the archive. By default it is "false".
+* **download_artwork** (_boolean_) - When true, Euterpe will search Cover Art Archive for album artworks when none is found locally. Anything found will be saved in the Euterpe database and later used instead of further calls to the archive. By default it is "false".
+
+* **discogs_auth_token** (_string_) - If download_artwork is true the server will try to find artist artwork in the Discogs database. In order for this to work an authentication is required with their API. This here must be a personal access token. In effect the server will make requests on your behalf. See the [Discogs API docs](https://www.discogs.com/developers/#page:authentication,header:authentication-discogs-auth-flow) for more information on how to generate your own token.
 
 ### Danger Zone
 
 You are discouraged to touch any of the following directives. But if you really need want to, read the following carefully.
 
-* **log_file** (_string_) - The name of logfile. HTTPMS will store logs in it. It will be truncated on every start. If the given path is relative it will be relative to the config directory.
+* **log_file** (_string_) - The name of logfile. Euterpe will store logs in it. It will be truncated on every start. If the given path is relative it will be relative to the config directory.
 
 * **sqlite_database** (_string_) - Name of the sqlite database in which information for the media files will be stored. If the given path is relative it will be relative to the config directory.
 

@@ -7,7 +7,7 @@ background: "dark"
 search: false
 
 repo_button:
-  url: "https://github.com/ironsmile/httpms"
+  url: "https://github.com/ironsmile/euterpe"
   text: "GitHub" # default: "Star"
   icon: "fab fa-github" # defaults: "fab fa-github"
 

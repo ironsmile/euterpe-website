@@ -63,4 +63,4 @@ enableGitInfo = true
   weight = 20
   name = "Euterpe GitHub repository"
   pre = "fab fa-github"
-  url = "https://github.com/ironsmile/httpms"
+  url = "https://github.com/ironsmile/euterpe"

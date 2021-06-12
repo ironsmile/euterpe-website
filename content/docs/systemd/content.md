@@ -16,37 +16,41 @@ If your operating system is using [systemd](https://systemd.io/) then Euterpe pr
 
 ```
 [Unit]
-Description=Euterpe Media Server
+[Unit]
+Description=Euterpe Streaming Media Server
+ConditionFileIsExecutable=/usr/bin/euterpe
+Documentation=https://listen-to-euterpe.eu/docs/
 After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/httpms
+ExecStart=/usr/bin/euterpe
 Restart=on-failure
-User=USER
-Group=GROUP
-WorkingDirectory=/home/USER/.httpms
+User=$USER
+Group=$GROUP
+WorkingDirectory=/home/$USER/.euterpe
 StandardOutput=journal
 StandardError=journal
 
 [Install]
 WantedBy=multi-user.target
+Alias=httpms
 ```
 
-Make sure to replace `USER` and `GROUP` from the template with the OS user and group which would be used for running the Euterpe binary. Make sure they have permissions to read your library directories. Only read permission is required.
+Make sure to replace `$USER` and `$GROUP` from the template with the OS user and group which would be used for running the Euterpe binary. Make sure they have permissions to read your library directories. Only read permission is required.
 
-For the latest version of this template see the [Euterpe source repository](https://github.com/ironsmile/httpms/blob/master/tools/httpms.service).
+For the latest version of this template see the [Euterpe source repository](https://github.com/ironsmile/euterpe/blob/master/tools/euterpe.service).
 
 ### Setting Up
 
-Find out from where `systemd` loads its units. [Its man page](https://www.freedesktop.org/software/systemd/man/systemd.unit.html) will be of great help. For example, a good place for the unit on Ubuntu servers will be `/lib/systemd/system/httpms.service`.
+Find out from where `systemd` loads its units. [Its man page](https://www.freedesktop.org/software/systemd/man/systemd.unit.html) will be of great help. For example, a good place for the unit on Ubuntu servers will be `/lib/systemd/system/euterpe.service`.
 
 ### Start
 
 Once the unit file is in place run the following to start Euterpe:
 
 ```
-systemctl start httpms
+systemctl start euterpe
 ```
 
 ### Stop
@@ -54,7 +58,7 @@ systemctl start httpms
 To stop it
 
 ```
-systemctl stop httpms
+systemctl stop euterpe
 ```
 
 ### Run on Start-Up
@@ -62,5 +66,5 @@ systemctl stop httpms
 In order to run Euterpe on every OS start-up run the following:
 
 ```
-systemctl enable httpms
+systemctl enable euterpe
 ```
