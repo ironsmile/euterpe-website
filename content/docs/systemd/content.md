@@ -16,7 +16,6 @@ If your operating system is using [systemd](https://systemd.io/) then Euterpe pr
 
 ```
 [Unit]
-[Unit]
 Description=Euterpe Streaming Media Server
 ConditionFileIsExecutable=/usr/bin/euterpe
 Documentation=https://listen-to-euterpe.eu/docs/
