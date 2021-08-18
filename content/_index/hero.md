@@ -22,8 +22,8 @@ subtitle = "Own your music, do not rent it!"
   color = "info" # primary, secondary, success, danger, warning, info, light, dark, link - default: primary
 
 [[buttons]]
-  text = "Source Code"
-  url = "https://github.com/ironsmile/httpms"
+  text = "Demo"
+  url = "/demo"
   color = "primary"
 
 [[buttons]]
