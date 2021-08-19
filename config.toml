@@ -20,6 +20,11 @@ enableGitInfo = true
   weight = 25
 
 [[menu.main]]
+  url = "/screenshots"
+  name = "Screenshots"
+  weight = 28
+
+[[menu.main]]
   url = "/clients"
   name = "Clients"
   weight = 30
