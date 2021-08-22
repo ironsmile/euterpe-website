@@ -9,4 +9,3 @@ The demo is made functional by the music included. I am very grateful to the peo
 
 * [Solo Instruments](https://freemusicarchive.org/music/Podington_Bear/Solo_Instruments) by [Podington Bear](https://freemusicarchive.org/music/Podington_Bear), licensed under [CC BY-NC](https://creativecommons.org/licenses/by-nc/3.0/)
 * [Directionless EP](https://freemusicarchive.org/music/Broke_For_Free/Directionless_EP) by [Broke For Free](https://freemusicarchive.org/music/Broke_For_Free), licensed under [CC BY](https://creativecommons.org/licenses/by/3.0/)
-* Velislav Ivanov who is a dear friend of mine
