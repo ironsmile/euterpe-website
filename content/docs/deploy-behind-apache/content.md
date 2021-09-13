@@ -46,6 +46,7 @@ This is slightly more involved. The Euterpe server is not exactly designed for
 this out of the box but some Apache configuration magic could work-around this. In
 order for this to work, Apache must be compiled with
 [mod_proxy_html](https://httpd.apache.org/docs/current/mod/mod_proxy_html.html),
+[mod_headers](https://httpd.apache.org/docs/current/mod/mod_headers.html),
 [mod_proxy_http](https://httpd.apache.org/docs/current/mod/mod_proxy_http.html) and
 [mod_substitute](https://httpd.apache.org/docs/current/mod/mod_substitute.html).
 
