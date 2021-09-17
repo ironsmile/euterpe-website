@@ -20,29 +20,23 @@ This guide will help you run an euterpe server which comes with a bundled web cl
 
 ### Option 1: Docker
 
-This is the easiest way to get you started. The only thing you need is a working [Docker](https://www.docker.com/) installation. Once you do, build yourself the Docker Image:
-
-```
-docker build -t ironsmile/euterpe github.com/ironsmile/euterpe
-```
-
-Wooh, great! With the image in hand you can run the following (depending on your OS).
+This is the easiest way to get you started. The only thing you need is a working [Docker](https://www.docker.com/) installation.
 
 For Linux/MacOS/BSDs:
 
 ```
-docker run -v "${HOME}/Music/:/root/Music" -p 8080:9996 -d ironsmile/euterpe euterpe -D
+docker run -v "${HOME}/Music/:/root/Music" -p 8080:9996 ironsmile/euterpe:latest euterpe -D
 ```
 
 For Windows:
 
 ```
-docker run -v "%userprofile%/Music/:/root/Music" -p 8080:9996 -d ironsmile/euterpe euterpe -D
+docker run -v "%userprofile%/Music/:/root/Music" -p 8080:9996 ironsmile/euterpe:latest euterpe -D
 ```
 
 Then point your browser to [http://localhost:8080](http://localhost:8080) and you will see the Euterpe web UI. The -v flag in the Docker command will mount your `Music` directory to be discoverable by Euterpe.
 
-Note that the method above will build you an image which uses the latest version on the `master` branch. Which might be unstable at times. You might want to choose a particular release tag instead.
+Note that the method above will run an image (the `latest`) which uses the latest version on the `master` branch. Which might be unstable at times. You might want to choose a particular release tag instead.
 
 For more details how to run effectively run Euterpe in a Docker container see the [Docker section of the documentation](/docs/docker).
 
