@@ -16,7 +16,7 @@ For more advanced installation see the rest of the documentation.
 
 Euterpe is a software which consist of two parts. A server and a varying number of clients. The server is where your music is stored and _served_ to clients. The clients are the actual programs which play the music for you. [Clients](/clients) access the server over internet via the HTTP protocol. Example for clients will be an app on a mobile phone, a desktop program or indeed, a web page.
 
-This guide will help you run an euterpe server which comes with a bundled web client which you could use with your browser. You could do that on your own computer on an actual server in a data centre.
+This guide will help you run an Euterpe server which comes with a bundled web client which you could use with your browser. You could do that on your own computer or on an actual server in a data centre.
 
 ### Option 1: Docker
 

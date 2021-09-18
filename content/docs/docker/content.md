@@ -26,4 +26,4 @@ First clone the [git repository](https://github.com/ironsmile/euterpe) and then 
 
 The `euterpe` binary there is placed in `/usr/local/bin/euterpe`.
 
-Once image is built you can start the server by:
+Once image is built you can start the [same way as for published images](#using-a-published-image).
