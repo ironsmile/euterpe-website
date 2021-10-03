@@ -9,6 +9,8 @@ sidebar:
   align: "right"
 categories:
   - "Blog"
+asset:
+  image: clients/mobile.jpeg
 ---
 
 I am a big believer in the "Show, Don't Tell" doctrine. So this means I would've made everything in my power to make sure people would know what Euterpe looks like and how it feels to used it, right? Unfortunately, I didn't live to this standard. Up to this point a person coming to the website would've been hard pressed to imagine what to expect from this magical and clearly superior music streaming service. Well, no more! This time I've done my best.
