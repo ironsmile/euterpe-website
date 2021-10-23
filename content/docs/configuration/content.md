@@ -8,6 +8,8 @@ title = "Configuration"
   sticky = true
 +++
 
+### Configuration Location
+
 The configuration is stored in a JSON file. Every user on the system has their own configuration file. For a Unixy OS it is located in ```$HOME/.euterpe/config.json```. For Windows users it is in ```%APPDATA%\euterpe\config.json```. The configuration file will be created for you on the first run. The default configuration options can be found in [here](https://github.com/ironsmile/euterpe/blob/master/src/config/config.go).
 
 ### Example File
