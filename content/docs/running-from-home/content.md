@@ -2,7 +2,7 @@
 fragment = "content"
 weight = 100
 
-title = "Seting Up From Home Network"
+title = "Install From Home Network"
 
 [sidebar]
   sticky = true

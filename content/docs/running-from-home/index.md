@@ -1,4 +1,4 @@
 +++
-title = "Seting Up From Home Network"
+title = "Install From Home Network"
 weight = 110
 +++
