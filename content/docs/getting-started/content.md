@@ -75,3 +75,5 @@ Add your new directory under the `libraries` directive which is a JSON list. See
 ### Further Set-Up
 
 For more options and finer set-up check out the rest of the documentation pages. There you will find more information on how to set-up a more production-ready installation.
+
+Running Euterpe on a home computer? See [the guide for exposing it to the internet](/docs/running-from-home).
