@@ -11,4 +11,4 @@ subtitle = "For integrated Linux/Gnome experience"
 
 For anyone who is using the [Rhythmbox](http://www.rhythmbox.org/), there is a plugin which lets you use your Euterpe installation. This way you have a fully integrated desktop experience without the need to download additional music players or having your browser constantly running. Everyhting works as if all of your files are locally stored.
 
-[Download](https://github.com/ironsmile/euterpe-rhythmbox)
+[Download](https://github.com/ironsmile/euterpe-rhythmbox/releases/latest)
