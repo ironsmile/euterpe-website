@@ -50,6 +50,11 @@ enableGitInfo = true
   weight = 20
 
 [[menu.footer]]
+  url = "https://flathub.org/apps/details/com.doycho.euterpe.gtk"
+  name = "Euterpe GTK Client On Flathub"
+  weight = 25
+
+[[menu.footer]]
   url = "https://doycho.com"
   name = "Doycho's Personal Corner"
   weight = 30
