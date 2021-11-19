@@ -1,0 +1,5 @@
+{{ $imagename := .Get 0 }}
+{{ $alt := .Get 1 }}
+{{ $width := .Get 2 }}
+{{ $height := .Get 3 }}
+<img src="{{ $imagename }}" alt="{{ $alt }}" {{ if $width }} width="{{ $width }}" {{ end }} {{ if $height }} height="{{ $height }}" {{ end }} />
