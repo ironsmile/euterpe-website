@@ -42,7 +42,11 @@ Here is an example configuration with explanation for its directives.
     // User and password for the HTTP basic authentication.
     "authentication": {
         "user": "example",
-        "password": "example"
+        "password": "example",
+
+        // This secret is used for generating session and device JWT tokens.
+        // It has to be completely random string, different for every installation.
+        "secret": "some-random-string"
     },
 
     // An array with all the directories which will be scanned for media. They must be
@@ -102,9 +106,10 @@ The JSON can store the following list of directives. Everything else is ignored.
 
 * **basic_authenticate** (_boolean_) - If true the webserver will require basic authentication on every request. Authentication is in the ```authentication``` directive. Examples: true, false.
 
-* **authentication** (_object_) - Contains the basic authentication user and password. Example: {"user": "test", "password": "testpassword"}.
+* **authentication** (_object_) - Contains the basic authentication user and password. Example: {"user": "test", "password": "testpassword", "secret": "not-so-secret"}.
   * **user** (_string_) - authentication username
   * **password** (_string_) - authentication password
+  * **secret** (_string_) - A random string which will be used for signing JWT for devices and browser sessions when authentication is enabled.
 
 * **download_artwork** (_boolean_) - When true, Euterpe will search Cover Art Archive for album artworks when none is found locally. Anything found will be saved in the Euterpe database and later used instead of further calls to the archive. By default it is "false".
 
