@@ -74,6 +74,11 @@ enableGitInfo = true
   name = "Clients"
   weight = 30
 
+[[menu.copyright_footer]]
+  url = "/privacy"
+  name = "Privacy"
+  weight = 40
+
 [[menu.footer_social]]
   weight = 20
   name = "Euterpe GitHub repository"
