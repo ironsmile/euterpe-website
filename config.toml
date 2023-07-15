@@ -4,6 +4,10 @@ title = "Euterpe Music"
 theme = "syna"
 enableGitInfo = true
 
+[params]
+  AuthorName = 'Doychin Atanasov'
+  GitHubUser = 'ironsmile'
+
 [[menu.main]]
   url = "/"
   name = "Home"
