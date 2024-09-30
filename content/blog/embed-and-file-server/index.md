@@ -58,6 +58,6 @@ It works with all ways one could receive a modification time. This means all ave
 
 ![Firefox Dev Tools tab showing cached files](network-caching-with-wrapfs.png "Another screenshot of the Firefox dev tools")
 
-Sweet, sweet 304 status codes! I've chosen to set the modification time to `time.Now()` on every process start. So after an server restart the browsers' cache will be invalidated. This is still a huge improvement over the status quo, in my opinion. My personal Euterpe instance, for example, is restarted only on new releases which is normally a period of many months.
+Sweet, sweet 304 status codes! I've chosen to set the modification time to `time.Now()` on every process start. So after a server restart the browsers' cache will be invalidated. This is still a huge improvement over the status quo, in my opinion. My personal Euterpe instance, for example, is restarted only on new releases which is normally a period of many months.
 
 So, this is it. I've created [wrapfs](https://github.com/ironsmile/wrapfs) as a separate module in hope it may be useful to other people. If at some point it causes a measurable reduction of internet traffic coming out of Go applications I will be more than happy. The next version of Euterpe will certainly make use of `wrapfs`. In fact, this has already been merged into its `master` branch.
