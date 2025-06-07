@@ -8,11 +8,11 @@ title = "API"
   sticky = true
 +++
 
-You can use Euterpe as a REST API and write your own player. Or maybe a plugin for your favourite player which would use your Euterpe installation as a back-end.
+You can use Euterpe as a REST API and write your own player. Or maybe a plug-in for your favourite player which would use your Euterpe installation as a back-end.
 
 ### v1 Compatibility Promise
 
-The API presented here under the `/v1/` prefix is stable and will continue to be supported as long as version one of the service is around. And this should be very _long time_. I don't plan to make backward incompatible changes. Ever. It has survived in this form since 2013. So it should be good for at least double than this amount of time in the future.
+The API presented in this README is stable and will continue to be supported as long as version one of the service is around. And this should be very _long time_. I don't plan to make backward incompatible changes. Ever. It has survived in this form since 2013. So it should be good for at least double than this amount of time in the future.
 
 This means that **clients written for Euterpe will continue to work**. I will never break them on purpose and if this happened it will be considered a bug to be fixed as soon as possible.
 
@@ -36,20 +36,51 @@ Authentication tokens can be acquired using the `/v1/login/token/` endpoint desc
 
 ### Endpoints
 
+<!-- MarkdownTOC -->
+
+* [About](#about)
 * [Search](#search)
 * [Browse](#browse)
 * [Play a Song](#play-a-song)
 * [Download an Album](#download-an-album)
 * [Album Artwork](#album-artwork)
-    * [Get Artwork](#get-artwork)
-    * [Upload Artwork](#upload-artwork)
-    * [Remove Artwork](#remove-artwork)
+    - [Get Artwork](#get-artwork)
+    - [Upload Artwork](#upload-artwork)
+    - [Remove Artwork](#remove-artwork)
 * [Artist Image](#artist-image)
-    * [Get Artist Image](#get-artist-image)
-    * [Upload Artist Image](#upload-artist-image)
-    * [Remove Artist Image](#remove-artist-image)
+    - [Get Artist Image](#get-artist-image)
+    - [Upload Artist Image](#upload-artist-image)
+    - [Remove Artist Image](#remove-artist-image)
+* [Playlists](#playlists)
+    - [List Playlists](#list-playlists)
+    - [Create Playlist](#create-playlist)
+    - [Get Playlist](#get-playlist)
+    - [Replace Playlist](#replace-playlist)
+    - [Update Playlist](#update-playlist)
+    - [Delete Playlist](#delete-playlist)
 * [Token Request](#token-request)
 * [Register Token](#register-token)
+
+<!-- /MarkdownTOC -->
+
+### About
+
+Query information about the server.
+
+```sh
+GET /v1/about
+```
+
+The returned response includes the server version. Example response:
+
+```js
+{
+    "server_version":"v1.5.4"
+}
+```
+
+This information could be used by clients to know what APIs are supported by the
+server.
 
 ### Search
 
@@ -59,20 +90,27 @@ One can do a search query at the following endpoint
 GET /v1/search/?q={query}
 ```
 
-wich would return an JSON array with tracks. Every object in the JSON represents a single track which matches the `query`. Example:
+which would return an JSON array with tracks. Every object in the JSON represents a single track which matches the `query`. Example:
 
 ```js
 [
    {
-      "album" : "Battlefield Vietnam",
-      "title" : "Somebody to Love",
-      "track" : 10,
-      "artist" : "Jefferson Airplane",
-      "artist_id": 33,
-      "id" : 18,
-      "album_id" : 2,
-      "format": "mp3",
-      "duration": 180000
+      "id" : 18, // Unique identifier of the track. Used for playing it.
+      "album" : "Battlefield Vietnam", // Name of the album in which this track is found.
+      "title" : "Somebody to Love", // Name of the song.
+      "track" : 10, // Position of this track in the album.
+      "artist" : "Jefferson Airplane", // Name of the artist or band who have performed the song.
+      "artist_id": 33, // The ID of the artist who have performed the track.
+      "album_id" : 2, // ID of the album in which this track belongs.
+      "format": "mp3", // File format of this track. mp3, flac, wav, etc...
+      "duration": 180000, // Track duration in milliseconds.
+      "plays": 3, // Number of times this track has been played.
+      "last_played": 1714834066, // Unix timestamp (seconds) when the track was last played.
+      "rating": 5, // User rating in the [1-5] range.
+      "favourite": 1714834066, // Unix timestamp (seconds) when the track was added to favourites.
+      "bitrate": 1536000, // Bits per second of this song.
+      "size": 3303014, // Size of the track file in bytes.
+      "year": 2004 // Year when this track has been included in the album.
    },
    {
       "album" : "Battlefield Vietnam",
@@ -92,12 +130,14 @@ The most important thing here is the track ID at the `id` key. It can be used fo
 
 Note that the track duration is in milliseconds.
 
+_Optional properties_: Some properties of tracks are optional and may be omitted in the response when they are not set. They may not be set because no user has performed an action which sets them or the value may not be set in the track file's metadata. E.g. playing a song for the fist time will set its `plays` property to 1. The list of optional properties is: `plays`, `favourite`, `last_played`, `rating`, `bitrate`, `size`, `year`.
+
 ### Browse
 
 A way to browse through the whole collection is via the browse API call. It allows you to get its albums or artists in an ordered and paginated manner.
 
 ```sh
-GET /v1/browse/[?by=artist|album][&per-page={number}][&page={number}][&order-by=id|name][&order=desc|asc]
+GET /v1/browse/[?by=artist|album|song][&per-page={number}][&page={number}][&order-by=id|name|random|frequency|recency][&order=desc|asc]
 ```
 
 The returned JSON contains the data for the current page, the number of all pages for the current browse method and URLs of the next or previous pages.
@@ -111,7 +151,7 @@ The returned JSON contains the data for the current page, the number of all page
 }
 ```
 
-For the moment there are two possible values for the `by` parameter. Consequently there are two types of `data` that can be returned: "artist" and "album" (which is the **default**).
+For the moment there are three possible values for the `by` parameter. Consequently there are two types of `data` that can be returned: "artist", "song" and "album" (which is the **default**).
 
 **by=artist**
 
@@ -120,9 +160,19 @@ would result in value such as
 ```js
 {
   "artist": "Jefferson Airplane",
-  "artist_id": 73
+  "artist_id": 73,
+  "album_count": 3 // Number of albums from this artist in the library.
+  "favourite": 1614834066, // Unix timestamp in seconds. When it was added to favourites.
+  "rating": 5 // User rating in [1-5] range.
 }
 ```
+
+The following fields are optional and may not be set:
+
+* `favourite`
+* `rating`
+
+Missing fields mean that the artist hasn't been given rating or added to favourites.
 
 **by=album**
 
@@ -131,10 +181,31 @@ would result in value such as
 ```js
 {
   "album": "Battlefield Vietnam"
-  "artist": "Jefferson Airplane",
-  "album_id": 2
+  "artist": "Various Artists",
+  "album_id": 2,
+  "duration": 1953000, // In milliseconds.
+  "track_count": 12, // Number of tracks (songs) which this album has.
+  "plays": 2312, // Number of times a song from the album has been played.
+  "favourite": 1614834066, // Unix timestamp in seconds. When it was added to favourites.
+  "last_played": 1714834066, // Unix timestamp in seconds.
+  "rating": 5, // User rating in [1-5] range.
+  "year": 2004, // Four digit year of when this album has been released.
+  "avg_bitrate": 1536000 // Average bitrate of the songs in this album.
 }
 ```
+
+The following fields are optional and may not be set:
+
+* `favourite`
+* `last_played`
+* `rating`
+
+Missing fields mean that the album hasn't been given rating, added to favourites or
+no tracks from it have ever been played.
+
+**by=song**
+
+would in a list of objects which are the same as the result from the `/v1/search` endpoint.
 
 **Additional parameters**
 
@@ -142,7 +213,14 @@ _per-page_: controls how many items would be present in the `data` field for eve
 
 _page_: the generated data would be for this page. The **default is 1**.
 
-_order-by_: controls how the results would be ordered. The value `id` means the ordering would be done by the album or artist ID, depending on the `by` argument. The same goes for the `name` value. **Defaults to `name`**.
+_order-by_: controls how the results would be ordered. **Defaults to `name` for albums and artists and `id` for tracks**. The meaning for its possible values is as follows:
+
+* `id` means the ordering would be done by the song, album or artist ID, depending on the `by` argument.
+* `name` orders values by their name.
+* `random` means that the list will be randomly ordered.
+* `frequency` will order by the number of times tracks have been played. For album this is the number of times tracks in this album has been played. Only applicable when `by` is `album` or `song`.
+* `recency` will order tracks or albums by when was the last time the song or the album was played. Only applicable when `by` is `album` or `song`.
+* `year` will order tracks or albums by the year of their release. Only applicable when `by` is `album` or `song`.
 
 _order_: controls if the order would ascending (with value `asc`) or descending (with value `desc`). **Defaults to `asc`**.
 
@@ -184,7 +262,7 @@ By default the full size image will be served. One could request a thumbnail by 
 PUT /v1/album/{albumID}/artwork
 ```
 
-Can be used to upload artwork directly on the Euterpe server. This artwork will be stored in the server database and will not create any files in the library paths. The image should  be send in the body of the request in binary format without any transformations. Only images up to 5MB are accepted. Example:
+Can be used to upload artwork directly on the Euterpe server. This artwork will be stored in the server database and will not create any files in the library paths. The image should be sent in the body of the request in binary format without any transformations. Only images up to 5MB are accepted. Example:
 
 ```sh
 curl -i -X PUT \
@@ -210,7 +288,7 @@ Euterpe could build a database with artists' images. Which it could then be used
 GET /v1/artist/{artistID}/image
 ```
 
-Returns a bitmap image representing an artist if one is available. Searching for artwork works like this: if artist image is found in the database then it will be used. In case there is not and Euterpe is configured to download images from interned and has a Discogs access token then it will use the MusicBrainz and Discogs APIs in order to retrieve an image. By default no internet requests are made.
+Returns a bitmap image representing an artist if one is available. Searching for artwork works like this: if artist image is found in the database then it will be used. In case there is not and Euterpe is configured to download images from internet and has a Discogs access token then it will use the MusicBrainz and Discogs APIs in order to retrieve an image. By default no internet requests are made.
 
 By default the full size image will be served. One could request a thumbnail by appending the `?size=small` query.
 
@@ -220,7 +298,7 @@ By default the full size image will be served. One could request a thumbnail by 
 PUT /v1/artist/{artistID}/image
 ```
 
-Can be used to upload artist image directly on the Euterpe server. It will be stored in the server database and will not create any files in the library paths. The image should  be send in the body of the request in binary format without any transformations. Only images up to 5MB are accepted. Example:
+Can be used to upload artist image directly on the Euterpe server. It will be stored in the server database and will not create any files in the library paths. The image should be sent in the body of the request in binary format without any transformations. Only images up to 5MB are accepted. Example:
 
 ```sh
 curl -i -X PUT \
@@ -235,6 +313,182 @@ DELETE /v1/artist/{artistID}/image
 ```
 
 Will remove the artist image the server database. Note, this will not touch any files on the file system.
+
+### Playlists
+
+Euterpe supports creating and using playlists. Below you will find all supported operations with playlists.
+
+#### List Playlists
+
+```
+GET /v1/playlists[?per-page={number}][&page={number}]
+```
+
+Returns paginated list of playlists. This list omits the track information and returns only the basic information about each playlist. Example response:
+
+```js
+{
+  "playlists": [ // List with playlists.
+    {
+      "id": 1, // ID of the playlist which have to be used for operations with it.
+      "name": "Quiet Evening", // Display name of the playlist.
+      "description": "For when tired of heavy metal!", // Optional longer description.
+      "tracks_count": 3, // Number of track in this playlist.
+      "duration": 488000, // Duration of the playlist in milliseconds.
+      "created_at": 1728838802, // Unix timestamp for when the playlist was created.
+      "updated_at": 1728838923 // Unix timestamp for when the playlist was last updated.
+    },
+    {
+      "id": 2,
+      "name": "Summer Hits",
+      "tracks_count": 4,
+      "duration": 435000,
+      "created_at": 1731773035,
+      "updated_at": 1731773035
+    }
+  ],
+  "previous": "/v1/playlists?page=1&per-page=2", // Next page with playlists if available
+  "next": "/v1/playlists?page=3&per-page=2", // Previous page with playlists if available
+  "pages_count": 2 // How many pages in total there are with playlists
+}
+```
+
+**Optional parameters**
+
+_per-page_: controls how many items would be present in the `playlists` field for every particular page. The **default is 40**.
+
+_page_: the generated data would be for this page. The **default is 1**.
+
+#### Create Playlist
+
+```
+POST /v1/playlists
+{
+    "name": "Quiet Evening",
+    "description": "Something to say about the playlist.",
+    "add_tracks_by_id": [14, 18, 255, 99]
+}
+```
+
+Creating a playlist is done with a `POST` request with a JSON body. The body is an object
+with the following properties:
+
+* `name` (_string_) - A short name of the playlist. Used for displaying it in lists.
+* `description` (_string_) - Longer description of the playlist visible when showing this particular playlist.
+* `add_tracks_by_id` (_list_ with integers) - An ordered list with track IDs which will be added in the playlist. IDs may repeat.
+
+This API method returns the ID of the newly created playlist:
+
+```js
+{
+    "created_playlsit_id": 2
+}
+```
+
+#### Get Playlist
+
+```
+GET /v1/playlist/{playlistID}
+```
+
+It will return information about a particular playlist with ID `playlistID`. It includes the tracks which are part of this playlist but is otherwise the same as an item in the List API endpoint.
+
+```js
+{
+  "id": 1,
+  "name": "New Playlist",
+  "description": "Some description text!",
+  "tracks_count": 2,
+  "duration": 311000,
+  "created_at": 1728838802,
+  "updated_at": 1728838923,
+  "tracks": [ // A list of tracks which are included in the playlist.
+    {
+      "id": 93,
+      "artist_id": 25,
+      "artist": "Ketsa",
+      "album_id": 10,
+      "album": "Summer With Sound",
+      "title": "Essence",
+      "track": 7,
+      "format": "mp3",
+      "duration": 200000,
+      "bitrate": 131072,
+      "size": 3245946
+    },
+    {
+      "id": 136,
+      "artist_id": 27,
+      "artist": "Daft Punk",
+      "album_id": 13,
+      "album": "Discovery",
+      "title": "Nightvision",
+      "track": 6,
+      "format": "mp3",
+      "duration": 111000,
+      "plays": 1,
+      "last_played": 1715795866,
+      "year": 2001,
+      "bitrate": 131072,
+      "size": 1783108
+    }
+  ]
+}
+```
+
+#### Replace Playlist
+
+```
+PUT /v1/playlist/{playlistID}
+{
+    "name": "Noisy Evening",
+    "description": "It is not that interesting, to be honest",
+    "add_tracks_by_id": [101, 25, 33]
+}
+```
+
+Completely replace a particular playlist with a new one. The request body is the same as the [Create Playlist](#create-playlist) endpoint.
+
+Note that all tracks of the old playlists will be removed before the tracks mentioned in the `add_tracks_by_id` are added to the playlist.
+
+#### Update Playlist
+
+```
+PATCH /v1/playlist/{playlistID}
+{
+    "name": "New Name",
+    "description": "A completely new description",
+    "add_tracks_by_id": [101, 25, 33],
+    "remove_indeces": [0, 5],
+    "move_indeces": [
+      {"from": 0, "to": 1}, {"from": 25, "to": 12}
+    ]
+}
+```
+
+All properties of the request for changing a playlist are **optional**. Not including them will preserve their original values. The properties are:
+
+* `name` (_string_) - A short name of the playlist. Used for displaying it in lists.
+* `description` (_string_) - Longer description of the playlist visible when showing this particular playlist.
+* `add_tracks_by_id` (_list_ with integers) - An ordered list with track IDs which will be added in the playlist. IDs may repeat.
+* `remove_indeces` (_list_ with integers) - A list with integers where each one is an index in the playlist. Tracks on these indexes will be removed from the playlist.
+* `move_indeces` (_list_ with "move" objects) - A list of "move operations". Every move operation is a JSON object which contains "from" and "to" properties which values are indexes in the playlist.
+
+Operations with tracks in the change request are performed in a strict order which is:
+
+1. Removing tracks in `remove_indeces`
+2. Adding tracks in `add_tracks_by_id`
+3. Moving tracks around mentioned in the `move_indeces`
+
+Note that moving tracks is done in the order given in `move_indeces` and each next move works on the new playlist state which came as a result of a previous moves.
+
+#### Delete Playlist
+
+```
+DELETE /v1/playlist/{playlistID}
+```
+
+This will remove the playlist with ID `playlistID`.
 
 ### Token Request
 
