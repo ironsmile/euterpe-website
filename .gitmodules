@@ -1,4 +1,4 @@
 [submodule "themes/syna"]
 	path = themes/syna
-	url = https://github.com/okkur/syna.git
-	branch = master
+	url = git@github.com:ironsmile/syna.git
+	branch = code-background
